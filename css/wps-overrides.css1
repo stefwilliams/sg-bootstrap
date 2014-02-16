@@ -1,0 +1,384 @@
+/*HIDE Symposium banner - for now*/
+div[style*="border:1px solid #000; text-align:center; background-color:white; color: black; font-size:12px; padding:6px 12px 6px 12px; margin-left:auto; margin-right:auto; margin-top:10px; margin-bottom:10px; border-radius:5px;"] {
+	display:none !important;
+}
+
+/*END hide banner*/
+
+/*header login */
+
+#symposium_summary-widget-3.header form{
+	margin-bottom: 26px;
+}
+
+#symposium_summary-widget-3.header #__wps__summary_widget_avatar {
+	float: right !important;
+}
+
+#symposium_summary-widget-3.header #__wps__summary_widget_avatar img{
+width: 75px !important;
+height: 75px !important;
+}
+
+#symposium_summary-widget-3.header #__wps__summary_widget {
+	margin-bottom: 0;
+}
+
+#symposium_summary-widget-3.header h2 {
+	display: none;
+}
+
+#symposium_summary-widget-3.header form#loginform p.login-username, #symposium_summary-widget-3.header form#loginform p.login-password {
+	text-align: right;
+	margin-bottom: 3px;
+}
+
+#symposium_summary-widget-3.header form#loginform label {
+	float: left;
+}
+
+#symposium_summary-widget-3.header form#loginform input {
+	padding: 0 5px;
+	margin-bottom: 3px;
+}
+
+#symposium_summary-widget-3.header form#loginform p.login-remember {
+	text-align: right;
+	margin-bottom: 0;
+}
+
+#symposium_summary-widget-3.header form#loginform input#rememberme {
+float: right;
+margin-left: 5px;
+margin-top: 2px;
+
+}
+
+#symposium_summary-widget-3.header form#loginform p.login-submit {
+	float: right;
+	margin-bottom: 0;
+}
+
+/*end header login*/
+
+body.slate-bootstrap #page #symposium_summary-widget-3.header a {
+	font-size: 13px;
+	color: #C8C8C8 !important;
+
+}
+
+.__wps__wrapper .row {
+
+	margin-left:0;
+
+}
+
+
+
+/*hide mail link*/
+
+#profile_send_mail_button {
+
+	display: none;
+
+}
+
+/*Summary (login logout) widget
+
+#__wps__summary_widget {
+	overflow-x:hidden !important;
+}
+
+#__wps__summary_widget ul {
+
+	margin-left:0;
+
+}
+
+
+
+#__wps__summary_widget ul li {
+
+	margin-left: 50px;
+
+}
+
+
+
+#__wps__summary_widget_avatar {
+
+	margin-left: -50px;
+
+}
+
+
+
+END Summary widget*/
+
+
+
+/*Friends widget*/
+
+/*hide mail link*/
+
+.widget_symposium_friends a[href*="INVALID PLUGIN URL REQUESTED"]{
+
+	display: none;
+
+}
+
+#__wps__new_members div[style="font-weight:bold"] {
+
+	border-bottom: 1px solid green;
+}
+
+
+#__wps__new_members div[style="clear:both;margin-top:6px;font-weight:bold"] {
+		border-bottom: 1px solid red;
+}
+
+
+.widget_symposium_friends img.avatar {
+
+	padding-top: 5px;
+
+}
+/* these styles are for use with online/offline icons
+.__wps__new_members_row_avatar {
+
+	margin-right:0 !important;
+
+}
+
+
+
+.__wps__new_members_row_member img {
+
+	background-color: #C8C8C8;
+
+	margin-top: 6px;
+
+	margin-right:5px;
+
+	float: left;
+
+	padding: 9px 4px;
+
+}*/
+
+/*END Friends widget*/
+
+
+
+/*forum*/
+
+#__wps__forum_div #starting-post *, #__wps__forum_div #child-posts *{
+
+	color: black !important;
+
+}
+
+
+
+#__wps__forum_div .floatleft.label {
+
+	text-shadow: none;
+
+	-webkit-box-shadow: none;
+
+	-moz-box-shadow: none;
+
+	box-shadow: none;
+
+	width:100%;
+}
+
+
+.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-draggable.ui-resizable {
+	background-color: #aaa;
+	padding:20px;
+}
+/*#forum_options a{
+
+	background-color:#757C82;
+
+	font-weight:bold;
+
+	font-size:11px;
+
+	padding: 5px;
+
+}*/
+
+.__wps__wrapper .row_odd {
+	background-color: #333 !important;
+}	
+.__wps__wrapper .row {
+	background-color: #555 !important;
+}	
+
+body.slate-bootstrap #page #__wps__forum_div .started-by a {
+	color:orangeRed !important;
+}
+
+#__wps__forum_div #starting-post {
+
+	background-color: #efefef;
+
+	border: 2px solid #aaaaaa;
+
+}
+
+
+
+#__wps__forum_div #child-posts {
+
+	background-color: white;
+
+}
+
+
+
+.new-topic-subject-text, .__wps__wrapper .reply-topic-subject-text, .__wps__wrapper .reply-topic-text {
+
+	width:100% !important;
+
+}
+
+
+
+#__wps__topic_options input {
+
+	margin-top:-3px;
+
+}
+
+
+
+
+div.ui-dialog * {
+
+	color: black !important;
+
+}
+
+
+
+div.ui-dialog .new-topic-subject {
+
+	color: white !important;
+
+	text-shadow: none;
+
+	-webkit-box-shadow: none;
+
+	-moz-box-shadow: none;
+
+	box-shadow: none;
+
+	width:30%;
+
+}
+
+/*END forum*/
+
+
+
+/*profile and members directory*/
+
+.__wps__wrapper #profile_header_panel {
+
+	height:initial !important;
+}
+
+textarea.elastic {
+
+	color:black !important;
+
+}
+
+
+
+/*div.friend_div *, div.members_row *{
+
+	color:black !important;
+
+}*/
+
+
+
+div.friend_div img[onclick*="INVALID PLUGIN URL REQUESTED"] {
+
+	display:none;
+
+}
+
+#symposium_settings_notify_new_messages {
+	display: none !important;
+}
+
+
+
+#profile_body object {
+
+	border: 2px solid #efefef;
+}
+
+#profile_body .__wps__settings_row {
+	display:block;
+}
+
+#profile_body .__wps__settings_row select#dob_day {
+	width:55px;
+}
+
+#profile_body .__wps__settings_row select#dob_month {
+	width:100px;	
+}
+
+#profile_body .__wps__settings_row select#dob_year {
+	width:70px;
+}
+
+#profile_body .__wps__settings_row input[type="checkbox"] {
+	float:left;
+	margin-right: 5px;
+}
+
+#symposium_settings_password input#xyz1, #symposium_settings_password input#xyz2{
+	-webkit-text-security: disc;
+}
+
+/*.__wps__wrapper select, .__wps__wrapper input, .__wps__wrapper option {
+
+	color:black !important;
+
+}*/
+
+.__wps__wrapper input {
+
+	margin-top: -2px;
+
+}
+
+/* #updateSettingsButton, #updatePersonalButton {
+
+	color:black!important;
+
+}*/
+
+.members_row [style*="clear:both"] {
+
+	color:#C8C8C8!important;
+
+}
+
+
+
+.members_row [style*="clear:both"] input {
+
+	margin-top: -2px;
+
+}
+
+/*END profile*/

@@ -1,0 +1,96 @@
+
+/*Hide 'this field can be seen by...' in profile pages*/
+.field-visibility-settings-toggle {
+display:none;
+}
+
+.field-visibility-settings-notoggle {
+display:none;
+}
+
+/*Profile page description text*/
+#buddypress .standard-form p.description {
+color: inherit;
+font-size: 95%;
+margin: 5px 0;
+}
+
+div.radio span.label {
+font-size: 100%;
+color: orange;
+margin-left: -20px !important;
+}
+
+div.radio a.clear-value {
+	display: none !important;
+}
+
+#buddypress #profile-edit-form ul.button-nav {
+margin-left: 0;
+}
+
+/*profile page (and probably other BP tables) */
+#buddypress table.notifications tr.alt td, #buddypress table.notifications-settings tr.alt td, #buddypress table.profile-fields tr.alt td, #buddypress table.wp-profile-fields tr.alt td, #buddypress table.messages-notices tr.alt td, #buddypress table.forum tr.alt td {
+	background: inherit;
+}
+
+/* group list page */
+#buddypress ul.item-list li div.item-desc {
+	font-size: inherit;
+}
+
+ul#groups-list, ul#members-list {
+	margin-left: 0;
+}
+
+ul#groups-list li, ul#members-list li{
+	line-height: 20px;
+}
+
+/*li.odd {
+	background-color: #252525;
+}
+
+li.even {
+	background-color: #2E3236;
+}*/
+
+#groups-list .hidden {
+	display: inherit;
+	visibility: inherit;
+}
+
+/*single group page*/
+#buddypress div#item-header div#item-actions {
+	float: none;
+	text-align: left;
+	width: inherit;
+	margin-left: 0;
+}
+
+#buddypress div#item-header div#item-actions h3 {
+	margin: 0;
+}
+
+#buddypress div#item-header ul {
+	margin-left: 0;
+}
+
+#buddypress div#item-header ul li {
+	float: left;
+}
+
+#buddypress span.highlight, #buddypress div#item-header div#item-meta, #buddypress span.activity {
+	font-size: inherit;
+}
+
+
+
+.widget.buddypress ul.item-list img.avatar {
+	height: 35px;
+	width: 35px;
+}
+
+/*.widget.buddypress div.item-avatar img.avatar {
+	margin: 10px 10px 15px 0;
+}*/
