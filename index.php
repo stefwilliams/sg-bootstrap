@@ -19,7 +19,7 @@ get_header();
 
 
 ?>
-<div class="span3">
+<section class="span3 widgetarea">
 
 	<?php if (function_exists('dynamic_sidebar') && dynamic_sidebar('homepage-col1')) : else : ?>
 
@@ -33,9 +33,12 @@ get_header();
 
 <?php endif; ?>
 <?php
+$home = get_category_by_slug('homepage');
+$home_id = $home->term_id;
+print_r($home_id);
 $news_args = array(
 	'category_name' => 'news',
-			'category__not_in' => '30', //homepage ID
+			'category__not_in' => $home_id,
 			'orderby' => 'date',
 			'order' => 'DESC',
 			'posts_per_page' => 5,
@@ -65,7 +68,7 @@ if ($news_posts->have_posts()) { ?>
 ?>
 
 
-</div>
+</section>
 <section id="primary" class="span6">
 	<?php tha_content_before(); ?>
 	<div id="content" role="main">
@@ -102,12 +105,19 @@ if ($news_posts->have_posts()) { ?>
 			}
 		}
 
+		$gigs = get_term_by('slug', 'gig', 'event-categories');
+		$gig_id = $gigs->term_id;
+		$access = get_term_by('slug', 'access-course', 'event-categories');
+		$access_id = $access->term_id;
+		$dance = get_term_by('slug', 'dance-course', 'event-categories');
+		$dance_id = $dance->term_id;				
+
 		$EM_Events = EM_Events::get( array(
 			'scope'=>'future', 
 			'orderby'=>'event_start_date', 
 			// 'order'=> 'DESC',
 			'limit'=>1,
-			'category' => '5,10,11'
+			'category' => $gig_id, $access_id, $dance_id,
 			) );
 
 		if ($EM_Events) {
@@ -126,11 +136,11 @@ if ($news_posts->have_posts()) { ?>
 				}?>
 				<div class="span2 pull-right alert alert-info">
 					<label>Date</label>
-					<?php echo $EM_Event->output('#_EVENTDATES'); ?><br />
+					<p><?php echo $EM_Event->output('#_EVENTDATES'); ?></p>
 					<label>Time</label>
-					<em><?php echo $EM_Event->output('#_EVENTTIMES'); ?></em>
+					<p><em><?php echo $EM_Event->output('#_EVENTTIMES'); ?></em></p>
 					<label>Location</label>
-					<?php echo $EM_Event->output('#_LOCATIONLINK'); ?>
+					<p><?php echo $EM_Event->output('#_LOCATIONLINK'); ?></p>
 				</div>
 				<?	
 				echo '<p>'.$EM_Event->output("#_EVENTNOTES").'</p>';
