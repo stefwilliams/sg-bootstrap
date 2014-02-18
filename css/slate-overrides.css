@@ -6,6 +6,7 @@ body{
 .alert {
 
 text-shadow: none;
+padding: 8px 14px;
 
 }
 
@@ -15,8 +16,10 @@ border-color: #faebcc;
 color: #8a6d3b;
 }
 
-.alert-info label {
-	color: red;
+.alert label {
+	text-shadow:none;
+	font-weight: bold;
+	border-bottom: 1px solid #AC8031;	
 }
 /*FB like widget*/
 header .widget_text {
@@ -343,6 +346,6 @@ content: close-quote;
 float: right;
 line-height: 30px;
 margin-left: 30px;
-margin-top: -15px;
+/*margin-top: -15px;*/
 font-style: italic;
 }

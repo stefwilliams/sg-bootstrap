@@ -35,7 +35,6 @@ get_header();
 <?php
 $home = get_category_by_slug('homepage');
 $home_id = $home->term_id;
-print_r($home_id);
 $news_args = array(
 	'category_name' => 'news',
 			'category__not_in' => $home_id,
