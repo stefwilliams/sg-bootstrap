@@ -44,15 +44,14 @@
 
 			<div class="item">
 				<div class="item-title">
+
 					<a href="<?php bp_member_permalink(); ?>"><?php bp_member_name();?></a><br />
 					<em><?php bp_member_user_email(); ?></em>
 
 					
 
 					<?php
-// echo "<pre>";
-// 					print_r($bp);
-// 					echo "</pre>";
+
 					if ( bp_get_member_latest_update() ) : ?>
 
 						<span class="update"> <?php bp_member_latest_update(); ?></span>

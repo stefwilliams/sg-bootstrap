@@ -32,7 +32,7 @@ get_header(); ?>
 	</div><!-- #content -->
 	<?php tha_content_after(); ?>
 </div><!-- #primary -->
-<section id="secondary" class="span4" role="complementary">
+<section id="secondary" class="span4 widget-area" role="complementary">
 	<?php echo do_shortcode('[contact-form-7 id="608" title="Book the Band"]'); ?>
 </section>
 

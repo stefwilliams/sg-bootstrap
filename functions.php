@@ -18,6 +18,17 @@ require_once('plugins/events-manager/events-manager.php' );
 
 //
 
+function get_user_role( $user_id ){
+
+  $user_data = get_userdata( $user_id );
+
+  if(!empty( $user_data->roles ))
+      return $user_data->roles[0];
+
+  return false; 
+
+}
+
 //
 
 /*shorten default excerpt*/

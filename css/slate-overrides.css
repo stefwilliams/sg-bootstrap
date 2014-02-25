@@ -54,7 +54,7 @@ h3 {
 	color: orange;
 }
 
-h5 {
+article.type-page h5 {
 	display: inline-block;
 }
 
@@ -127,7 +127,9 @@ td.eventless-today, td.eventful-today {
 	background-color: orange !important;
 	color: black;
 }
-
+aside.widget_em_calendar {
+	overflow: auto;
+}
 table.em-calendar td.eventful a, table.em-calendar td.eventful-today a {
 	color: orange;
 }

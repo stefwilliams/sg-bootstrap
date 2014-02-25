@@ -15,7 +15,7 @@ tha_sidebars_before(); ?>
 			'category_name' => 'testimonials',	
 			'orderby' => 'rand',
 			'order' => 'ASC',
-			'posts_per_page'   => 2,
+			'posts_per_page'   => 1,
 			);
 		$testimonials_posts = new WP_Query($testimonials_args);	
 		wp_reset_postdata(); ?>
@@ -33,12 +33,27 @@ tha_sidebars_before(); ?>
 						get_template_part( '/partials/content', get_post_format() );
 						?>
 					
-					<?php
+<?php
 				// 
 				} ?>
+<?php
+    // Get the ID of a given category
+    $category_id = get_cat_ID( 'testimonials' );
 
-		</aside>			<?php
+    // Get the URL of this category
+    $category_link = get_category_link( $category_id );
+?>
+
+<!-- Print a link to this category -->
+<p style="display:block;text-align:right;">See all <a href="<?php echo esc_url( $category_link ); ?>" title="Category Name">Testimonials</a></p>
+
+		</aside>
+					<?php
 		}	?>
+		<aside id="testimonial_form" class="widget well widget_testimonial_form_widget">
+			<h2 class="widget-title">Seen Us? Tell Us!</h2>
+			<?php echo do_shortcode('[contact-form-7 id="1037" title="Seen Us? Tell Us!"]');?>
+		</aside>
 		<?php
 		// the_widget( 'WP_Widget_Archives', array(
 		// 	'count'		=>	0,

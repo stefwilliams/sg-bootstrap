@@ -68,7 +68,7 @@ if (has_excerpt() && is_user_logged_in()) { ?>
 	<em><?php echo $EM_Event->output('#_EVENTTIMES'); ?></em>
 	<label>Location</label>
 	<?php echo $EM_Event->output('#_LOCATIONLINK'); ?>
-
+<hr />
 
 
 <h4>Event Details</h4>
