@@ -103,22 +103,49 @@ if ($news_posts->have_posts()) { ?>
 				get_template_part( '/partials/content', get_post_format() );			
 			}
 		}
+		$public_events = get_term_by('slug', 'public-events', 'event-categories');
+		$public_events_id = $public_events->term_id;
+// error_log(print_r($public_events, true));
 
-		$gigs = get_term_by('slug', 'gig', 'event-categories');
-		$gig_id = $gigs->term_id;
-		$access = get_term_by('slug', 'access-course', 'event-categories');
-		$access_id = $access->term_id;
-		$dance = get_term_by('slug', 'dance-course', 'event-categories');
-		$dance_id = $dance->term_id;				
+$cat_args = array(
+	'taxonomy' => 'event-categories',
+	'parent' => $public_events_id,
+	);
+
+$public_categories = get_categories($cat_args);
+$cats = array();
+foreach ($public_categories as $category) {
+	array_push($cats, $category->term_id);
+	# code...
+}
+// $cats = "'".$cats."'";
+$cats = implode(",", $cats);
+// $dump = var_export($public_categories);
+// error_log(print_r($public_categories, true));
+		// $gigs = get_term_by('slug', 'gig', 'event-categories');
+		// $gig_id = $gigs->term_id;
+		// $carnival = get_term_by('slug', 'carnival', 'event-categories');
+		// $carnival_id = $carnival->term_id;
+		// $parade = get_term_by('slug', 'parade', 'event-categories');
+		// $parade_id = $parade->term_id;
+		// $festival = get_term_by('slug', 'festival', 'event-categories');
+		// $festival_id = $festival->term_id;
+		// $public_workshop = get_term_by('slug', 'public-workshop', 'event-categories');
+		// $public_workshop_id = $public_workshop->term_id;
+		// $access = get_term_by('slug', 'access-course', 'event-categories');
+		// $access_id = $access->term_id;
+		// $dance = get_term_by('slug', 'dance-course', 'event-categories');
+		// $dance_id = $dance->term_id;				
 
 		$EM_Events = EM_Events::get( array(
 			'scope'=>'future', 
 			'orderby'=>'event_start_date', 
 			// 'order'=> 'DESC',
 			'limit'=>1,
-			'category' => $gig_id, $access_id, $dance_id,
+			'category' => $cats,
+			// 'category' => $gig_id, $access_id, $dance_id, $carnival_id, $parade_id, $festival_id, $public_workshop_id,
 			) );
-
+error_log(print_r($EM_Events, true));
 		if ($EM_Events) {
 
 

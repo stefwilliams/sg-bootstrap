@@ -35,7 +35,11 @@
 
 	<ul id="members-list" class="item-list" role="main">
 
-	<?php while ( bp_members() ) : bp_the_member();?>
+	<?php while ( bp_members() ) : bp_the_member();
+	global $members_template;
+	$user_id = $members_template->member->id;
+	$member_role = get_user_role ($user_id);
+	?>
 
 		<li>
 			<div class="item-avatar">
@@ -60,7 +64,7 @@
 
 				</div>
 
-				<div class="item-meta"><span class="activity"><?php bp_member_last_active(); ?></span></div>
+				<div class="item-meta"><span class="activity"><?php bp_member_last_active(); ?></span><span class="pull-right member_role"><?php echo $member_role; ?></span></div>
 
 				<?php do_action( 'bp_directory_members_item' ); ?>
 

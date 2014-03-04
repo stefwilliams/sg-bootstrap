@@ -3,6 +3,17 @@ body{
 	color: #D1D9E0 !important;
 }
 
+.pagination span.dots {
+background-color: transparent !important;
+}
+li.vcard {
+	list-style: none;
+}
+.event_cat, .member_role {
+	font-size:smaller; 
+	color:orange;
+}
+
 .alert {
 
 text-shadow: none;
@@ -132,6 +143,9 @@ aside.widget_em_calendar {
 }
 table.em-calendar td.eventful a, table.em-calendar td.eventful-today a {
 	color: orange;
+}
+table.em-calendar td.eventful-today a {
+	color: white;
 }
 
 /*Theme My Login*/

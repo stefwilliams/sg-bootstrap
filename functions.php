@@ -18,6 +18,38 @@ require_once('plugins/events-manager/events-manager.php' );
 
 //
 
+function exclude_tags_based_on_roles($query) {
+
+	if (is_category('web-help')) {
+		$user_id = get_current_user_id();
+		$role = get_user_role ($user_id);
+		$admin_tag = get_term_by('slug', 'samba_admin', 'post_tag');
+		$editor_tag = get_term_by('slug', 'samba_editor', 'post_tag');
+
+		// print_r($admin_tag->term_id);
+
+		if ($role == "samba_editor") {
+			$ignore_tags = array( 
+				$admin_tag->term_id
+				);
+			$query->set('tag__not_in', $ignore_tags);
+		}
+		if ($role == "samba_player") {
+			$ignore_tags = array( 
+				$admin_tag->term_id,
+				$editor_tag->term_id,
+				);
+			$query->set('tag__not_in', $ignore_tags);
+		}		
+
+
+		return;
+
+	}
+
+}
+add_action( 'pre_get_posts', 'exclude_tags_based_on_roles', 1 );
+
 function get_user_role( $user_id ){
 
   $user_data = get_userdata( $user_id );

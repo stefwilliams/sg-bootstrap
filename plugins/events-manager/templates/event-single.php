@@ -39,7 +39,7 @@ global $EM_Event;
 if (has_excerpt() && is_user_logged_in()) { ?>
 
 <h3>Notes for Band Members</h3>
-<?php if ($EM_Event->output('#_CATEGORYNAME') == "Gig Enquiry") {
+<?php if ($EM_Event->output('#_CATEGORYNAME') == "Enquiry") {
 	echo '<div class="alert alert-warning"><strong>NOTE: </strong>This is currently just a gig enquiry, but we still need to know who can attend.</div>';
 }
 	?>
