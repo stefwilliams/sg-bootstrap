@@ -145,7 +145,7 @@ $cats = implode(",", $cats);
 			'category' => $cats,
 			// 'category' => $gig_id, $access_id, $dance_id, $carnival_id, $parade_id, $festival_id, $public_workshop_id,
 			) );
-error_log(print_r($EM_Events, true));
+// error_log(print_r($EM_Events, true));
 		if ($EM_Events) {
 
 
