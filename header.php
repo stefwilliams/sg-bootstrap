@@ -18,6 +18,7 @@
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
 		<meta charset="<?php bloginfo( 'charset' ); ?>" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="google-site-verification" content="noLJUFAk9P2ucGIR9d4dXFW94_yMOQvsmME7I3a6XIg" />
 
 		
 		<title><?php wp_title( '&laquo;', true, 'right' ); ?></title>
