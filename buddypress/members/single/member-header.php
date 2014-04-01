@@ -22,7 +22,7 @@
 
 <div id="item-header-content">
 
-	
+	<span class="email"><?php echo bp_displayed_user_email(); ?><br /></span>
 	<span class="activity"><?php bp_last_activity( bp_displayed_user_id() ); ?></span>
 
 	<?php do_action( 'bp_before_member_header_meta' ); ?>
