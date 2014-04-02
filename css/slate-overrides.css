@@ -34,13 +34,17 @@ color: #8a6d3b;
 }
 /*FB like widget*/
 header .widget_text {
-	background-color: #6d84b4;
+	/*background-color: #6d84b4;*/
 }
 
 header .widget_text h2 {
 	background-color: #3B5998;
 	color: white !important;
 	font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
+}
+
+header div.social {
+	margin-bottom:3px;
 }
 /*end FB like widget*/
 
