@@ -185,7 +185,7 @@ if (function_exists('register_sidebar')) {
 	register_sidebar(array(
 		'name'          => __( 'Header Login', 'sg-bootstrap' ),
 		'id'   			=> 'header-login',
-		'before_widget' => '<div id="%1$s" class="header widget %2$s span3">',
+		'before_widget' => '<div id="%1$s" class="header widget %2$s span3 hidden-phone">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
