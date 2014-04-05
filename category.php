@@ -15,8 +15,10 @@ get_header(); ?>
 	<?php tha_content_before(); ?>
 	<div id="content" role="main">
 		<?php tha_content_top();
-		$cat = get_category( get_query_var( 'cat' ) );
-		$cat_slug = $cat->slug;
+		if (is_category( )) {
+			$cat = get_category( get_query_var( 'cat' ) );
+			$cat_slug = $cat->slug;
+		}
 		if ( have_posts() ) : ?>
 
 			<header class="page-header">
