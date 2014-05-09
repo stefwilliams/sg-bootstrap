@@ -71,6 +71,59 @@ function sg_rename_group_home_tab() {
 }
 add_action('bp_init', 'sg_rename_group_home_tab');
 
+// trying to figure out how to allow non-members to view list of members
+// function sg_all_users_view_group_members() {
+//   global $bp;
+//   global $groups_template;
+//   if (($bp->current_component == 'groups') && (is_user_logged_in())) {
+//   	$group = $bp->current_item;
+//   	$options_nav = $bp->bp_options_nav[$group];
+//   	foreach ($options_nav as $option) {
+//   		if ($option['slug'] == 'members') {
+//   			$position = $option['position'];
+
+
+// // 	echo "<pre>";
+// //   			print_r($position);
+// // echo "</pre>";
+//   		}
+//   		# code...
+//   	}
+//   	$bp->bp_options_nav[$group][$position]['user_has_access'] = 1;
+
+//   	$bp->groups->current_group->user_has_access = 1;
+//   	$groups_template->group->user_has_access = 1;
+//   	// $bp->groups->current_group->is_user_member = 1;
+//   	// $bp->groups->current_group->is_visible = 1;
+//   }
+// // error_log ($bp);
+// //  	echo "<pre>"; 
+// // 	print_r($bp->bp_options_nav[$group][$position]);
+// // echo "</pre>";
+// //  	echo "<pre>"; 
+// // 	print_r($bp->groups->current_group);
+// // echo "</pre>";
+// return $bp;
+// }
+// // add_action('bp_before_group_body', 'sg_all_users_view_group_members');
+
+// add_action('bp_before_group_header', 'sg_all_users_view_group_members');
+// // add_action('groups_screen_group_members', 'sg_all_users_view_group_members');
+// // add_action('bp_before_group_members_content', 'sg_all_users_view_group_members');
+// add_action('plugins_loaded', 'sg_all_users_view_group_members');
+// function bp_dump() {
+//     global $bp;
+ 
+//     foreach ( (array)$bp as $key => $value ) {
+//         echo '<pre>';
+//         echo '<strong>' . $key . ': </strong><br />';
+//         print_r( $value );
+//         echo '</pre>';
+//     }
+//     die;
+// }
+// add_action( 'bp_group_options_nav', 'bp_dump' );
+// END trying to figure out how to allow non-members to view list of members
 
 //Remove Notifications tab
 function remove_notifications_subnav(){

@@ -3,6 +3,18 @@ body{
 	color: #D1D9E0 !important;
 }
 
+img {
+  width: inherit !important;  /* Make images fill their parent's space. Solves IE8. */
+  max-width: 100% !important;  /*Add !important if needed. */
+  height: inherit !important;    /* Add !important if needed. */
+}
+
+.yendifplayer {
+	width: 45% !important;
+	float: right;
+	margin-left: 10px;
+}
+
 .pagination span.dots {
 background-color: transparent !important;
 }
@@ -83,6 +95,8 @@ body.slate-bootstrap #menu-top-menu.nav li.home_link a {
 	width: 40px;
 	height:40px;
 	padding: 0;
+	text-indent: 5px;
+	line-height: 40px;
 	background: #43494f url('home_bg_alpha.gif') no-repeat 6px 5px;	}
 
 body.slate-bootstrap #menu-top-menu.nav li.home_link.active a {
