@@ -18,6 +18,10 @@ require_once('plugins/events-manager/events-manager.php' );
 
 //
 
+//change default 'publicize' value on new posts
+add_filter( 'publicize_checkbox_default', '__return_false' );
+
+
 function exclude_tags_based_on_roles($query) {
 
 	if (is_category('web-help')) {
