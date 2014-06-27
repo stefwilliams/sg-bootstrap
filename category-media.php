@@ -24,8 +24,9 @@ get_header(); ?>
 
 			<?php
 			while ( have_posts() ) {
-			
 				the_post();
+				
+				echo category_description( get_cat_ID( 'music' ) );
 				if (in_category('music')) {
 					get_template_part( '/partials/content', get_post_format() );
 				}
