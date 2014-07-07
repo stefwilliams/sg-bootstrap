@@ -4,9 +4,9 @@ body{
 }
 @media all\0{
 	img {
-	  width: inherit !important;  /* Make images fill their parent's space. Solves IE8. */
+	  /*width: inherit !important;   Make images fill their parent's space. Solves IE8. REMOVED because it broke later versions of IE*/
 	  max-width: 100% !important;  /*Add !important if needed. */
-	  height: inherit !important;    /* Add !important if needed. */
+	  /*height: inherit !important;     Add !important if needed. AAIIIIIEEEEE!!! */
 	}
 }
 
