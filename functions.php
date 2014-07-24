@@ -21,6 +21,12 @@ require_once('plugins/events-manager/events-manager.php' );
 //change default 'publicize' value on new posts
 add_filter( 'publicize_checkbox_default', '__return_false' );
 
+//add Jetpack 'Publicize' functionality to Events CPT
+add_action('init', 'sg_publicize_events');
+function sg_publicize_events() {
+    add_post_type_support( 'event', 'publicize' );
+}
+
 
 function exclude_tags_based_on_roles($query) {
 
