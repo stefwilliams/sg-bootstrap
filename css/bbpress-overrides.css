@@ -1,3 +1,8 @@
+#buddypress div.pagination {
+	float:none; /*default float left causes email archive to display incorrectly*/
+}
+
+
 /*Hide search and orderby blocks on group pages (as removing code seems to break pagination*/
 article.bp_group #subnav {
 	display: none;
