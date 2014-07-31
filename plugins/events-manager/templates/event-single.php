@@ -1,49 +1,23 @@
 <?php
-
-/* 
-
- * Remember that this file is only used if you have chosen to override event pages with formats in your event settings!
-
- * You can also override the single event page completely in any case (e.g. at a level where you can control sidebars etc.), as described here - http://codex.wordpress.org/Post_Types#Template_Files
-
- * Your file would be named single-event.php
-
- */
-
-/*
-
- * This page displays a single event, called during the the_content filter if this is an event page.
-
- * You can override the default display settings pages by copying this file to yourthemefolder/plugins/events-manager/templates/ and modifying it however you need.
-
- * You can display events however you wish, there are a few variables made available to you:
-
- * 
-
- * $args - the args passed onto EM_Events::output() 
-
- */
-
 global $EM_Event;
-
 /* @var $EM_Event EM_Event */
-
 // echo $EM_Event->output_single();
-
 // echo "<pre style='overflow:scroll;height:500px;''>";
 // print_r($EM_Event);
 // echo "</pre>";
-
 ?>
 <?php 
-if (has_excerpt() && is_user_logged_in()) { ?>
+global $post;
+// print_r($post->ID);
+$bandinfo = get_post_meta( $post->ID, 'bandinfo', true);
+if ($bandinfo && is_user_logged_in()) { ?>
 
 <h3>Notes for Band Members</h3>
 <?php if ($EM_Event->output('#_CATEGORYNAME') == "Enquiry") {
 	echo '<div class="alert alert-warning"><strong>NOTE: </strong>This is currently just a gig enquiry, but we still need to know who can attend.</div>';
 }
 	?>
-<?php echo $EM_Event->output('#_EVENTEXCERPT'); ?>
+<?php echo $bandinfo; ?>
 <hr />
 
 <?php 

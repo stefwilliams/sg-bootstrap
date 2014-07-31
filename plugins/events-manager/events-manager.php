@@ -1,43 +1,52 @@
 <?php
-function change_excerpt_to_band_info() { 
-	remove_meta_box('postexcerpt', 'event', 'normal'); 
-	add_meta_box('postexcerpt', __('Info for Band Members'), 'band_info_meta_box', 'event', 'normal'); 
+//new meta box for band info
+function add_band_info_meta_box() { 
+	add_meta_box('band_info', __('Info for Band Members'), 'band_info_wysiwyg', 'event', 'normal', 'high'); 
 	
 } 
 
-function band_info_meta_box(){ 
-	$post = get_post();	?>
-	<textarea name="excerpt" id="excerpt"><?php echo esc_html( $post->post_excerpt ); ?></textarea> 
+function band_info_wysiwyg(){ 
+	global $post;
+	
+	$band_info = get_post_meta($post->ID, 'bandinfo', true);
+	// $settings = array();
+	wp_nonce_field( plugin_basename( __FILE__ ), 'bandinfo_nonce' );?>
 	<p>Put instructions and other band-specific info in here. Stuff that is NOT for the public.</p>
+	<?php wp_editor( $band_info, 'bandinfo', $settings);?>
+	
 	<?php
 }
 
-add_action( 'admin_init', 'change_excerpt_to_band_info' ); 
+add_action( 'admin_init', 'add_band_info_meta_box' ); 
 
-//ensure event Open Graph tags are generated from content, NOT excerpt (which is used for Band only info)
 
-function sg_event_description_tag( $tags ) {
+//save custom band_info
+function save_band_info_customfield($post_ID){
+    // verify if this is an auto save routine. 
+    // If it is our form has not been submitted, so we dont want to do anything
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
+        return;
 
-	global $post;
+    // First we need to check if the current user is authorised to do this action. 
+    if ( ! current_user_can( 'edit_post', $post_ID ) )
+        return;
 
-$pt = get_post_type( $post );
-// print_r($pt);
+    // Secondly we need to check if the user intended to change this value.
+    if ( ! isset( $_POST['bandinfo_nonce'] ) || ! wp_verify_nonce( $_POST['bandinfo_nonce'], plugin_basename( __FILE__ ) ) )
+      return;
 
-	if (get_post_type( $post ) == 'event') {
+    // Thirdly check the post type
+    if ('event' != get_post_type($post_ID))
+        return;
 
-        // Remove the default description added by Jetpack
-		unset( $tags['og:description'] );
+    $mydata =  $_POST['bandinfo'];
+// error_log(var_export($_POST,true));
+    // Do something with $mydata 
+    // either using 
+    update_post_meta( $post_ID, 'bandinfo', $mydata);
 
-		$content = $post->post_content;
-		$tags['og:description'] = strip_tags($content);
-		// print_r($tags);
-	}
-		return $tags;  
 }
-add_filter( 'jetpack_open_graph_tags', 'sg_event_description_tag' );
-
-
-
-
+/* saved the data */
+add_action( 'save_post', 'save_band_info_customfield' );
 
 ?>
