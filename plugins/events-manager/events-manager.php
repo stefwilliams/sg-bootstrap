@@ -1,4 +1,10 @@
 <?php
+function remove_event_excerpt_support() {
+remove_post_type_support( 'event', 'excerpt' );
+}
+
+add_action( 'init', 'remove_event_excerpt_support', 10 );
+
 //new meta box for band info
 function add_band_info_meta_box() { 
 	add_meta_box('band_info', __('Info for Band Members'), 'band_info_wysiwyg', 'event', 'normal', 'high'); 
@@ -48,5 +54,31 @@ function save_band_info_customfield($post_ID){
 }
 /* saved the data */
 add_action( 'save_post', 'save_band_info_customfield' );
+
+
+
+//sg_event_description_tag() is a safety net to ensure that excerpts are not used for FB description tags. ome have had to have a characterinserted to avoid breaking single event pages.
+
+
+function sg_event_description_tag( $tags ) {
+
+    global $post;
+
+    $pt = get_post_type( $post );
+// print_r($pt);
+
+    if (get_post_type( $post ) == 'event') {
+
+        // Remove the default description added by Jetpack
+        unset( $tags['og:description'] );
+
+        $content = $post->post_content;
+        $tags['og:description'] = strip_tags($content);
+        // print_r($tags);
+    }
+    return $tags;  
+}
+add_filter( 'jetpack_open_graph_tags', 'sg_event_description_tag' );
+
 
 ?>
