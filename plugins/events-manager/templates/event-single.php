@@ -17,7 +17,7 @@ if ($bandinfo && is_user_logged_in()) { ?>
 	echo '<div class="alert alert-warning"><strong>NOTE: </strong>This is currently just a gig enquiry, but we still need to know who can attend.</div>';
 }
 	?>
-<?php echo $bandinfo; ?>
+<?php echo wpautop( $bandinfo) ; ?>
 <hr />
 
 <?php 
