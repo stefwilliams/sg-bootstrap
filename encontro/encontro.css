@@ -1,3 +1,8 @@
+.header.widget .login {
+	background-color: #ccc!important;
+	border: 1px solid #eee;
+}
+
 #primary.encontro blockquote {
 	margin-top: 25px;
 }
