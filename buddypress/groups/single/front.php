@@ -87,8 +87,5 @@ if ( $this_grp_emails->have_posts() ) {
 /* Restore original Post Data */
 wp_reset_postdata();
 
-?><script type="text/javascript">
-//prevents modal from loading behind overlay
-	jQuery('.modal').appendTo('body').modal('show');
-</script>
+?>
 </div><!--#item-body-->

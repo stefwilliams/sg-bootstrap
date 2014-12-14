@@ -1,386 +1,781 @@
 body{
 
+
+
 	color: #D1D9E0 !important;
+
 }
+
 @media all\0{
+
 	img {
+
 	  /*width: inherit !important;   Make images fill their parent's space. Solves IE8. REMOVED because it broke later versions of IE*/
+
 	  max-width: 100% !important;  /*Add !important if needed. */
+
 	  /*height: inherit !important;     Add !important if needed. AAIIIIIEEEEE!!! */
+
 	}
+
 }
+
+select {
+	width: inherit;
+}
+
 
 .yendifplayer {
+
 	width: 45% !important;
+
 	float: right;
+
 	margin-left: 10px;
+
 }
 
+
+
 .pagination span.dots {
+
 background-color: transparent !important;
+
 }
+
 li.vcard {
+
 	list-style: none;
+
 }
+
 .event_cat, .member_role {
+
 	font-size:smaller; 
+
 	color:orange;
+
 }
+
+
 
 .alert {
 
+
+
 text-shadow: none;
+
 padding: 8px 14px;
 
+
+
 }
+
+
 
 .alert-warning {
+
 background-color: #fcf8e3;
+
 border-color: #faebcc;
+
 color: #8a6d3b;
+
 }
+
+
 
 .alert label {
+
 	text-shadow:none;
+
 	font-weight: bold;
+
 	border-bottom: 1px solid #AC8031;	
+
 }
+
 /*FB like widget*/
+
 header .widget_text {
+
 	/*background-color: #6d84b4;*/
+
 }
+
+
 
 header .widget_text h2 {
+
 	background-color: #3B5998;
+
 	color: white !important;
+
 	font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
+
 }
+
+
 
 header div.social {
+
 	margin-bottom:3px;
+
 }
+
 /*end FB like widget*/
 
+
+
 /*event list widget*/
+
 .widget_em_widget ul, .widget_news_widget ul {
+
 list-style: none;
+
 margin-left: 0;
+
 }
+
+
 
 .widget_news_widget li {
+
 	padding: 5px 0;
+
 	border-bottom: 1px solid orange;
+
 }
+
+
 
 #author-info, article.post, article.page {
+
 padding-bottom: 30px;
+
 margin-bottom: 0px !important;
+
 border-bottom: 1px solid #333;
+
 }
+
+
 
 h3 {
+
 	color: orange;
+
 }
+
+
 
 article.type-page h5 {
+
 	display: inline-block;
+
 }
+
+
 
 .navbar li.home_link
+
  {
+
 	/*background: transparent url('home_bg.gif');*/
+
 }
+
+
 
 body.slate-bootstrap #menu-top-menu.nav li.home_link a {
+
 	color: transparent !important;
+
 	width: 40px;
+
 	height:40px;
+
 	padding: 0;
+
 	text-indent: 5px;
+
 	line-height: 40px;
+
 	background: #43494f url('home_bg_alpha.gif') no-repeat 6px 5px;	}
 
+
+
 body.slate-bootstrap #menu-top-menu.nav li.home_link.active a {
+
 	background-color: #43494f;
+
 }
+
+
 
 body.slate-bootstrap #menu-top-menu.nav li.home_link a:hover {
+
 	background-color: #3a3f44;
+
 }
+
+
 
 hr {
+
 	border-bottom-color: orange !important;
+
 }
+
+
 
 h1#site-title, h2#site-description {
+
 	clear: none;
+
 }
+
+
 
 .thumbnail, a.thumbnail:hover {
+
 border: 1px solid orange;
+
 }
 
+
+
 /*Tiny MCE*/
+
 td.mceIframeContainer {
+
 	background-color: white;
+
 }
+
 /*
+
 body.slate-bootstrap #page a.wp-switch-editor, body.slate-bootstrap #page a.button.insert-media.add_media {
+
 	color:#666 !important;
+
 }*/
+
 /*END Tiny MCE*/
+
+
 
 /*hide default edit link - for front-end editor
 
+
+
 span.label.edit-link {
+
 	display: none;
+
 }*/
+
+.em-attendee-fieldset {
+	border-bottom: 1px dashed black;
+}
+
+.em-booking-form label {
+    width: 200px;
+}
+
 
 label {
+
 	color: orange;
+
 	clear: left;
+
 }
+
 .label {
 
+
+
 	background-color: transparent !important;
+
 }
+
+
 
 .table-striped tbody tr:nth-child(even) td {
+
 	background-color: #2E3236;
+
 }
+
+
 
 .table-striped tbody tr:nth-child(odd) td {
+
 	background-color: #252525;
+
 }
+
+
 
 td.eventless-today, td.eventful-today {
+
 	background-color: orange !important;
+
 	color: black;
+
 }
+
 aside.widget_em_calendar {
+
 	overflow: auto;
+
 }
+
 table.em-calendar td.eventful a, table.em-calendar td.eventful-today a {
+
 	color: orange;
+
 }
+
 table.em-calendar td.eventful-today a {
+
 	color: white;
+
 }
+
+
 
 /*Theme My Login*/
+
 /*logged in styles*/
+
 .header.widget .login {
+
 	padding: 5px;
+
 	height: 100%;
+
 	display:block;
+
 	background-color: #2e3236;
+
 }
+
+
 
 .header.widget .login .tml-user-avatar{
+
 	float:right;
+
 /*	margin-right: 5px;
+
     margin-top: 5px;*/
+
 }
+
 /*logged out styles*/
+
 .header.widget .login p.error {
+
 	position: absolute;
+
 	right: 330px;
+
 	height: 94px;
+
 	width: 153px;
+
 }
+
+
 
 .header.widget .login p.error a{
+
 	color: red;
+
 }
+
+
 
 .header.widget .login form#loginform1 {
+
 	margin-top: -10px;
+
 	height: 105px;
+
 	background-color: #454545;
+
 }
+
+
 
 .header.widget .login form#loginform1 *{
+
 	margin:0;
+
 	padding:0;
+
 }
+
 .header.widget .login form#loginform1 p {
+
 	display: block;
+
 	padding-top: 5px;
+
 }
+
+
 
 .header.widget .login form#loginform1 p label {
+
 	width: 100px;
+
 	padding-left: 5px;
+
 	float: left;
+
 }
+
+
 
 .header.widget .login form#loginform1 p input {
+
 	width: 155px;
+
 	margin-right: 5px;
 
+
+
 }
+
 .header.widget .login form#loginform1 p.forgetmenot {
+
 	display: inline;
+
 	width: 155px;
+
 }
+
+
 
 .header.widget .login form#loginform1 p.forgetmenot label{
+
 	padding-top: 7px;
+
 }
+
 .header.widget .login form#loginform1 p.forgetmenot input#rememberme1{
+
 	margin-top: 10px;
+
 	width: 15px;
+
 }
+
+
 
 .header.widget .login form#loginform1 p.submit{
+
 	display: inline;
+
 	float: right;
-}
-.header.widget .login form#loginform1 p.submit input#wp-submit1{
-	width: 130px;
-	margin-right: 7px;
-}
-.header.widget .login ul.tml-action-links {
-	margin: 0;
-	list-style-type: none;
-	margin-top: -42px;
-	margin-left: 6px;
+
 }
 
-.header.widget .login ul.tml-user-links {
-	margin:0 0 0 5px;
-	list-style: none;
+.header.widget .login form#loginform1 p.submit input#wp-submit1{
+
+	width: 130px;
+
+	margin-right: 7px;
+
 }
+
+.header.widget .login ul.tml-action-links {
+
+	margin: 0;
+
+	list-style-type: none;
+
+	margin-top: -42px;
+
+	margin-left: 6px;
+
+}
+
+
+
+.header.widget .login ul.tml-user-links {
+
+	margin:0 0 0 5px;
+
+	list-style: none;
+
+}
+
 /*body.slate-bootstrap textarea, 
+
 body.slate-bootstrap input,
+
 body.slate-bootstrap input[type="text"], 
+
 body.slate-bootstrap input[type="password"], 
+
 body.slate-bootstrap input[type="datetime"], 
+
 body.slate-bootstrap input[type="datetime-local"], 
+
 body.slate-bootstrap input[type="date"], 
+
 body.slate-bootstrap input[type="month"], 
+
 body.slate-bootstrap input[type="time"], 
+
 body.slate-bootstrap input[type="week"], 
+
 body.slate-bootstrap input[type="number"], 
+
 body.slate-bootstrap input[type="email"], 
+
 body.slate-bootstrap input[type="url"], 
+
 body.slate-bootstrap input[type="search"], 
+
 body.slate-bootstrap input[type="tel"], 
+
 body.slate-bootstrap input[type="color"], 
+
 body.slate-bootstrap select,
+
 body.slate-bootstrap .uneditable-input 
+
 {
+
 background-color:#666 !important;
+
 color:white !important;
+
 border: 1px solid #2E3134 !important;
+
 }*/
+
+
+
 
 
 body.slate-bootstrap input::-webkit-input-placeholder {
+
 	color:white;
+
 }
+
+
+
 
 
 /*body.slate-bootstrap {
 
+
+
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+
+
 
 	font-size: 14px !important;
 
+
+
 	line-height: 21px !important;
+
 }*/
+
+
 
 body.slate-bootstrap #menu-top-menu.nav a{
+
 	color:orange !important;
+
 }
+
+
 
 /*body.slate-bootstrap #page a {
+
 	color:white !important;
+
 }*/
+
+
 
 #header-image {
+
 	float:left;
+
 	margin-right: 10px;
+
 	margin-bottom: 0!important;
+
 }
 
+
+
 /*hgroup {
+
 	float: left;
+
 	margin-bottom: 0!important;
+
 }*/
+
+
 
 h2#site-description {
 
+
+
 	color:#C8C8C8 !important;
+
 	font-size: 20px !important;
 
+
+
 }
 
+
+
 .navbar {
+
 	font-size:12px !important;
+
 }
+
+
+
 
 
 #access {
+
 	clear: both;
+
 }
+
+
 
 .navbar .navbar-inner {
 
+
+
 	padding-left: 0px;
+
 	padding-right: 0px;
+
 }
 
+
+
 form#searchform {
+
 	float:right;
+
 	margin-left: 15px;
+
 	margin-right: 15px;	
+
 }
+
+
 
 #page {
 
+
+
 	background-color: #272B30 !important;
+
 	opacity:0.95  !important;
+
 }
+
+
 
 .page-header {
+
 	border-bottom-color: orange !important;
+
 }
+
+
 
 #secondary.widget-area {
+
 	font-size:14px !important;
+
 }
+
+
 
 .widget h2 {
+
 	font-size: 18px;
+
 	margin-top: 0;
+
 	line-height: 23px;
+
 	text-align: center;
+
 	color: white !important;
+
 	background-color: #AC8031;
+
 }
 
+
+
 article.category-testimonials .entry-content:before
+
 {
+
 color: orange;
+
 font-size: 60px;
+
 content: open-quote;
+
 float: left;
+
 line-height: 30px;
+
 margin-right: 10px;
+
 margin-bottom: -30px;
+
 font-style: italic;
+
 }
+
+
+
 
 
 article.category-testimonials .entry-content p:last-of-type:before
+
 {
+
 color: orange;
+
 font-size: 60px;
+
 content: close-quote;
+
 float: right;
+
 line-height: 30px;
+
 margin-left: 30px;
+
 /*margin-top: -15px;*/
+
 font-style: italic;
+
 }
