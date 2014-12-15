@@ -20,7 +20,9 @@ tha_entry_before(); ?>
 	</div><!-- .entry-summary -->
 	<?php else : ?>
 	<div class="entry-content clearfix">
-		<?php if ( has_post_thumbnail() ) : ?>
+		<?php 
+		$pt = get_post_type( $post->ID );
+		if ( has_post_thumbnail() && $pt != "event") : ?>
 		<a class="thumbnail post-thumbnail span2" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
 			<?php the_post_thumbnail( 'thumbnail' ); ?>
 		</a>
