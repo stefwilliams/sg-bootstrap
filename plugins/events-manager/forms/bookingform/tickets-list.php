@@ -25,15 +25,12 @@ $EM_Tickets = $EM_Event->get_bookings()->get_tickets(); //already instantiated, 
 $collumns = $EM_Tickets->get_ticket_collumns(); //array of collumn type => title
 
 ?>
-		<?php 
-		// echo "<pre>"; print_r (reset($EM_Tickets->tickets); echo "</pre>";
-		?>
+
 
 <table class="em-tickets" cellspacing="0" cellpadding="0">
 
 	<tr>
-		<?php print_r ($collumns);?>
-
+		
 		<?php foreach($collumns as $type => $name): ?>
 		<th class="em-bookings-ticket-table-<?php echo $type; ?>"><?php echo $name; ?></th>
 
