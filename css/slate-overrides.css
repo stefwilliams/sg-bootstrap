@@ -25,6 +25,14 @@ select {
 }
 
 
+p.smallprint {
+	font-size: 11px;
+	background-color: white;
+	border: 1px solid #aaa;
+	padding: 5px;
+}
+
+
 .yendifplayer {
 
 	width: 45% !important;
@@ -243,6 +251,11 @@ border: 1px solid orange;
 
 }
 
+body.single-event span.thumbnail {
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
 
 
 /*Tiny MCE*/

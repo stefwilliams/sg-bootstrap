@@ -50,7 +50,9 @@ get_template_part( 'encontro/nav' );
 	$args = array (
 
 		'category_name' => 'leaders',
-
+		'orderby' => 'name',
+		'order' => 'ASC',
+		'posts_per_page' => -1,
 		'post_status' => array(                 
             'publish',
             ),

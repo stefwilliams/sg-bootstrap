@@ -31,11 +31,7 @@ require_once('plugins/thememylogin.php' );
 
 require_once('plugins/events-manager/events-manager.php' );
 
-// require_once('plugins/frontendeditor.php');
-
-
-
-//
+require_once('plugins/events-manager/events-manager-surcharge.php' );
 
 /**
 * separate media categories from post categories
