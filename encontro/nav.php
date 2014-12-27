@@ -1,12 +1,5 @@
 <section id="nav" class="encontro-logo span3">
-
-	<div class="encontro-logo">
-		<a href="/encontro2015"><img src="/wp-content/themes/sg-bootstrap/encontro/encontro.png" alt="Encontro 2015 Home" /></a>
-
-	</div>
-
-	<?php
-
+<?php
 global $post;
 
 
@@ -16,8 +9,18 @@ global $post;
 	$encontro_home_object = get_page_by_path( $encontro_home_slug);
 
 	$encontro_home_id = $encontro_home_object->ID;
+	$encontro_home_guid = $encontro_home_object->guid;
+
+	$encontro_dir = get_stylesheet_directory_uri()."/encontro";
+?>
 
 
+	<div class="encontro-logo">
+		<a href="<?php echo $encontro_home_guid; ?>"><img src="<?php echo $encontro_dir."/encontro.png"; ?>" alt="Encontro 2015 Home" /></a>
+
+	</div>
+
+	<?php
 
 		$args = array(
 
