@@ -106,15 +106,14 @@ footer#colophon {
 	color:#ddd !important;
 	text-shadow: 1px 1px 2px black;	
 	margin-top: 0;
-background-color: #3a3f44;
-padding-left: 10px;
-background-image: -webkit-linear-gradient(315deg, #eee, #3a3f44);
-background-image: -moz-linear-gradient(315deg, #eee, #3a3f44);
-background-image: -o-linear-gradient(315deg, #eee, #3a3f44);
-background-image: linear-gradient(315deg, #eee, #3a3f44);
-background-repeat: no-repeat;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff52575c', endColorstr='#ff3a3f44', GradientType=0);
-
+	background-color: #3a3f44;
+	padding-left: 10px;
+	background-image: -webkit-linear-gradient(315deg, #eee, #3a3f44);
+	background-image: -moz-linear-gradient(315deg, #eee, #3a3f44);
+	background-image: -o-linear-gradient(315deg, #eee, #3a3f44);
+	background-image: linear-gradient(315deg, #eee, #3a3f44);
+	background-repeat: no-repeat;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff52575c', endColorstr='#ff3a3f44', GradientType=0);
 }
 
 .thumbnail, a.thumbnail:hover {
@@ -153,8 +152,6 @@ background-color: transparent !important;
 	margin-bottom: 3px;
 }
 
-
-
 .leaders .label-info {
 	background-color: #3a87ad !important;
 }
@@ -180,24 +177,18 @@ background-color: transparent !important;
 	z-index: 2;
 }
 
-
-
 div.encontro-logo {
-	background: #eee url('encontro.png') no-repeat center center;
+	/*background: #eee url('encontro.png') no-repeat center center;*/
+	text-align: center;
 	border: 1px solid #333;
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
 	border-bottom: 0;
 	height: 175px;
-	margin-bottom: -3px;
+	margin-bottom: -5px;
+	padding-top: 5px;
 }
 
-.encontro-logo h3 {
-	color: #666;
-/*	padding-top: 50px;*/
-	margin-left: 185px;
-}
-
-.encontro-logo h3::first-letter {
-	font-size: 150%;
+.encontro-logo a {
+	display: block;
 }
