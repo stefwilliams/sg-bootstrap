@@ -33,6 +33,7 @@ require_once('plugins/events-manager/events-manager.php' );
 
 require_once('plugins/events-manager/events-manager-surcharge.php' );
 
+require_once('plugins/events-manager/events-manager-oneticketonly.php' );
 /**
 * separate media categories from post categories
 * use a custom category called 'category_media' for the categories in the media library
@@ -45,7 +46,7 @@ add_action('init', 'sg_publicize_events');
 
 //prevent 'the bootstrap' gallery hook from running - it breaks Jetpack - NOTE: this function is in the main theme's functions.php - doesn't have any effect here - this is just for ref.
 
-remove_filter( 'post_gallery', 'the_bootstrap_post_gallery', 15, 2 );
+remove_filter( 'post_gallery', 'the_bootstrap_post_gallery', 10, 2 );
 
 function sg_publicize_events() {
 

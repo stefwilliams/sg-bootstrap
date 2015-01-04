@@ -1,11 +1,39 @@
 <?php
+// add_action('em_booking_form_custom', 'sg_em_make_uk_default', 1, 1);
+// add_filter( 'em_booking_form_get_form_template', 'sg_em_make_uk_default', 5, 1 );
+// function sg_em_make_uk_default($form_template) {
+//     global $EM_Booking_Form;
+    // error_log(var_export($EM_Event, true));
+    // ob_start();
+    // var_dump($EM_Event);
+    // $emdump = ob_get_clean();
+    // echo "<pre>";
+    // print_r($emdump);
+    // echo "</pre>";
+
+
+//     ob_start();
+// $vars = get_defined_vars();
+//     var_dump($vars);
+//     $emdump = ob_get_clean();
+
+
+// echo "<pre>";
+// error_log(var_export($EM_Booking_Form->{'form_template'}, true));
+// echo "</pre>";
+// return $form_template;
+// return $EM_Event;
+    // print_r($EM_Event);
+    // return $EM_Event;
+// }
+
 //{has_leaders} conditional
 add_action('em_event_output_condition', 'my_em_styles_event_output_condition', 1, 4);
 function my_em_styles_event_output_condition($replacement, $condition, $match, $EM_Event){
     $leader_ids = get_post_meta( $EM_Event->post_id, 'event_leaders', true);
     if( is_object($EM_Event) && preg_match('/^has_leaders/',$condition, $matches) && $leader_ids ){
-            $replacement = preg_replace("/\{\/?$condition\}/", '', $match);
-        }
+        $replacement = preg_replace("/\{\/?$condition\}/", '', $match);
+    }
     
     return $replacement;
 }
@@ -17,14 +45,14 @@ function my_em_styles_placeholders($replace, $EM_Event, $result){
     global $wp_query;
     switch( $result ){
         case '#_LEADERS':
-            $replace = '';
-            $leader_ids = get_post_meta( $EM_Event->post_id, 'event_leaders', true);
-            $leaders = array();
-            foreach ($leader_ids as $leader_id) {
-                $leaders[] = '<a href="'.post_permalink($leader_id).'">'.get_the_title( $leader_id ).'</a>';
-            }
+        $replace = '';
+        $leader_ids = get_post_meta( $EM_Event->post_id, 'event_leaders', true);
+        $leaders = array();
+        foreach ($leader_ids as $leader_id) {
+            $leaders[] = '<a href="'.post_permalink($leader_id).'">'.get_the_title( $leader_id ).'</a>';
+        }
             // print_r($leaders);
-            $replace = implode(', ', $leaders);
+        $replace = implode(', ', $leaders);
     }
     return $replace;
 }
@@ -34,16 +62,17 @@ function my_em_styles_placeholders($replace, $EM_Event, $result){
 function get_event_id_from_shortcode($content) {
     //find the shortcodes
     $pattern = get_shortcode_regex();
-        preg_match_all("/".$pattern."/",$content,$matches);    
+    preg_match_all("/".$pattern."/",$content,$matches);    
         //find 'event' in the array
-        if (in_array('event', $matches[2])) {
+    if (in_array('event', $matches[2])) {
             //get the event attributes
-            $event_atts = $matches[3][0];
+        $event_atts = $matches[3][0];
             //find 'post_id' in event attributes
-            preg_match_all('/post_id="(.*?)"/', $event_atts, $id);
+        preg_match_all('/post_id="(.*?)"/', $event_atts, $id);
             //get value of post_id
-            $event_id = $id[1][0];
-            return $event_id;
+            // print_r($id);
+        $event_id = $id[1][0];
+        return $event_id;
     }
 }
 
@@ -59,9 +88,9 @@ function event_leaders_checklist(){
     $args = array( 'posts_per_page' => '-1', 'category_name' => 'leaders', 'orderby' => 'title', 'order' => 'ASC' );
     $leaders = get_posts( $args );
     $event_leaders = get_post_meta($post->ID, 'event_leaders', true);
-    // print_r($leaders);
+    // var_dump($event_leaders);
     foreach ($leaders as $leader) {
-        if (in_array($leader->ID, $event_leaders)) {
+        if (is_array($event_leaders) && in_array($leader->ID, $event_leaders)) {
             $checked = 'checked';
         }
         else {
@@ -126,25 +155,26 @@ function insert_band_info($content) {
     $enquiry_alert = '<div class="alert alert-warning"><strong>NOTE: </strong>This is currently just a gig enquiry, but we still need to know who can attend.</div>';    
     if (has_shortcode ($content, 'event')) {
         $event_id = get_event_id_from_shortcode($content);
-        }
+    }
     elseif( is_single() && $post->post_type == 'event' && is_user_logged_in () ){  
         $event_id = $post->ID;
-    }
-    //now we know what event_id we're on about...
-    $event_cats = wp_get_post_terms( $event_id, 'event-categories' );
-    $bandinfo = wpautop(get_post_meta( $event_id, 'bandinfo', true));
 
-    if ($bandinfo && is_user_logged_in()) {
-        foreach ($event_cats as $cat) {
-            if (isset($cat->name) && $cat->name =='Enquiry') {
-             $output = $enquiry_alert.$bandinfo;
-             return $output.$content;
-            }
-            elseif (is_user_logged_in()) {
-              $output = $bandinfo;
-              return $output.$content;
-            } 
-            else {
+    //now we know what event_id we're on about...
+        $event_cats = wp_get_post_terms( $event_id, 'event-categories' );
+        $bandinfo = wpautop(get_post_meta( $event_id, 'bandinfo', true));
+        # code...
+
+        if ($bandinfo && is_user_logged_in()) {
+            foreach ($event_cats as $cat) {
+                if (isset($cat->name) && $cat->name =='Enquiry') {
+                   $output = $enquiry_alert.$bandinfo;
+                   return $output.$content;
+               }
+               elseif (is_user_logged_in()) {
+                  $output = $bandinfo;
+                  return $output.$content;
+              } 
+              else {
                 return $content;
             }
         }
@@ -152,6 +182,13 @@ function insert_band_info($content) {
     else {
         return $content;
     }
+
+
+}
+else {
+    return $content;
+}
+
 }
 
 add_filter('the_content','insert_band_info',10,1);
