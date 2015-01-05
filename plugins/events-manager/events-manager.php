@@ -143,6 +143,7 @@ function insert_band_info($content) {
     $enquiry_alert = '<div class="alert alert-warning"><strong>NOTE: </strong>This is currently just a gig enquiry, but we still need to know who can attend.</div>';    
     if (has_shortcode ($content, 'event')) {
         $event_id = get_event_id_from_shortcode($content);
+        return $content;
     }
     elseif( is_single() && $post->post_type == 'event' && is_user_logged_in () ){  
         $event_id = $post->ID;
