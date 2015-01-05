@@ -1,31 +1,19 @@
 <?php
-// add_action('em_booking_form_custom', 'sg_em_make_uk_default', 1, 1);
-// add_filter( 'em_booking_form_get_form_template', 'sg_em_make_uk_default', 5, 1 );
-// function sg_em_make_uk_default($form_template) {
-//     global $EM_Booking_Form;
-    // error_log(var_export($EM_Event, true));
-    // ob_start();
-    // var_dump($EM_Event);
-    // $emdump = ob_get_clean();
-    // echo "<pre>";
-    // print_r($emdump);
-    // echo "</pre>";
-
-
-//     ob_start();
-// $vars = get_defined_vars();
-//     var_dump($vars);
-//     $emdump = ob_get_clean();
-
-
-// echo "<pre>";
-// error_log(var_export($EM_Booking_Form->{'form_template'}, true));
-// echo "</pre>";
-// return $form_template;
-// return $EM_Event;
-    // print_r($EM_Event);
-    // return $EM_Event;
-// }
+//change countries list on booking form to show UK at top, and remove Wales, England, Scotland, Ireland...
+add_filter( 'em_get_countries', 'sg_em_make_uk_default', 5, 1 );
+function sg_em_make_uk_default($em_countries_array) {
+    $add_to_top = array(
+        'GB'    =>  'United Kingdom'
+        );
+    // unset($em_countries_array['GB']);
+    unset($em_countries_array['XS']);
+    unset($em_countries_array['XE']);
+    unset($em_countries_array['XW']);
+    unset($em_countries_array['XI']);
+    unset($em_countries_array[0]);
+    $em_countries_array = $add_to_top + $em_countries_array;
+    return $em_countries_array;
+}
 
 //{has_leaders} conditional
 add_action('em_event_output_condition', 'my_em_styles_event_output_condition', 1, 4);
