@@ -150,17 +150,19 @@ function insert_band_info($content) {
 
     //now we know what event_id we're on about...
         $event_cats = wp_get_post_terms( $event_id, 'event-categories' );
+        $bandinfo_heading = '<h4>Info for band members</h4>';
         $bandinfo = wpautop(get_post_meta( $event_id, 'bandinfo', true));
+        $bandinfo_underscore = '<hr />';
         # code...
 
         if ($bandinfo && is_user_logged_in()) {
             foreach ($event_cats as $cat) {
                 if (isset($cat->name) && $cat->name =='Enquiry') {
-                   $output = $enquiry_alert.$bandinfo;
+                   $output = $bandinfo_heading.$enquiry_alert.$bandinfo.$bandinfo_underscore;
                    return $output.$content;
                }
                elseif (is_user_logged_in()) {
-                  $output = $bandinfo;
+                  $output = $bandinfo_heading.$bandinfo.$bandinfo_underscore;
                   return $output.$content;
               } 
               else {
