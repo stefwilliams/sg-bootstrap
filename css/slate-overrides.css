@@ -26,6 +26,7 @@ select {
 
 
 p.smallprint {
+	color: #333;
 	font-size: 11px;
 	background-color: white;
 	border: 1px solid #aaa;
