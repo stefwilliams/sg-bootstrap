@@ -36,8 +36,10 @@ function my_em_styles_placeholders($replace, $EM_Event, $result){
         $replace = '';
         $leader_ids = get_post_meta( $EM_Event->post_id, 'event_leaders', true);
         $leaders = array();
-        foreach ($leader_ids as $leader_id) {
-            $leaders[] = '<a href="'.post_permalink($leader_id).'">'.get_the_title( $leader_id ).'</a>';
+        if ($leader_ids) {
+            foreach ($leader_ids as $leader_id) {
+                $leaders[] = '<a href="'.post_permalink($leader_id).'">'.get_the_title( $leader_id ).'</a>';
+            }            # code...
         }
             // print_r($leaders);
         $replace = implode(', ', $leaders);
