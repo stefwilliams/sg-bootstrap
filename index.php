@@ -157,7 +157,8 @@ $cats = implode(",", $cats);
 				
 				<?php
 				echo '<h4 class="entry-title" style="display:inline-block">&nbsp; '.$EM_Event->output("#_EVENTLINK").'</h4></header><article class="post">';
-				if ($EM_Event->output("#_EVENTIMAGEURL")) {		
+				if ($EM_Event->output("#_EVENTIMAGEURL")) {	
+
 					echo '<img class="thumbnail aligncenter" src="'.$EM_Event->output("#_EVENTIMAGEURL").'" />'; 
 				}?>
 				<div class="span2 pull-right alert alert-info">
