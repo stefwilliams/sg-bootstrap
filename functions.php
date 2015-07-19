@@ -18,10 +18,12 @@ require_once('plugins/events-manager/events-manager-oneticketonly.php' );
 * use a custom category called 'category_media' for the categories in the media library
 
 */
+
 function sg_custom_img_sizes() {
 	 // add_image_size( 'category-thumb', 300 ); // 300 pixels wide (and unlimited height)
   // 	add_image_size( 'homepage-thumb', 220, 180, true ); // (cropped)
-	add_image_size( 'carousel', 960, 540, array('left','center') );
+	add_image_size( 'carousel', 860, 363, array('left','center') );
+	// add_image_size( 'carousel_mob', 430, 182, array('left','center') );
 }
 add_action( 'after_setup_theme', 'sg_custom_img_sizes' );
 
@@ -117,7 +119,7 @@ if (function_exists('register_sidebar')) {
 	register_sidebar(array(
 		'name'          => __( 'Homepage Column 1', 'sg-bootstrap' ),
 		'id'   			=> 'homepage-col1',
-		'before_widget' => '<aside id="%1$s" class="widget well %2$s">',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
@@ -128,7 +130,7 @@ if (function_exists('register_sidebar')) {
 	register_sidebar(array(
 		'name'          => __( 'Homepage Column 2', 'sg-bootstrap' ),
 		'id'   			=> 'homepage-col2',
-		'before_widget' => '<aside id="%1$s" class="widget well %2$s">',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',

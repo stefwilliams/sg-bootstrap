@@ -15,39 +15,286 @@
  */
 
 get_header(); 
+if (function_exists('wpmd_is_notphone')) {
+	$notphone = wpmd_is_notphone();
+}
+// var_dump($notphone);
+$public_events = get_term_by('slug', 'public-events', 'event-categories');
+$public_events_id = $public_events->term_id;
+$cat_args = array(
+	'taxonomy' => 'event-categories',
+	'parent' => $public_events_id,
+	);
+
+$public_categories = get_categories($cat_args);
+$cats = array();
+foreach ($public_categories as $category) {
+	array_push($cats, $category->term_id);
+}
+$cats = implode(",", $cats);
+$EM_Events = EM_Events::get( array(
+	'scope'=>'future', 
+	'orderby'=>'event_start_date', 
+	'limit'=>7, //7 max unless carousel is redesigned
+	'category' => $cats,
+	) );
+	?>
+	<section id="primary" class="span12">
+		<?php	
+
+		$total = count($EM_Events);	
+		if ($EM_Events && $total > 1) { ?>
+		<h3>Upcoming Events</h3>
+		<?php }
+		else { ?>
+		<h3>Upcoming Event</h3>
+		<?php } ?>
+		<script>
+		jQuery(function () {
+			jQuery(".carousel").carousel({ interval: false });
+		});
+		</script>
+		<div class="row">
+			<div class="span9">
+							<ol class="carousel-indicators visible-phone">
+								<?php
+								foreach ($EM_Events as $EM_Event) {
+									$att_id = get_post_thumbnail_id($EM_Event->post_id );
+									if ($att_id) {
+										$img_src = wp_get_attachment_image_src( $att_id, 'thumbnail');
+									}
+									// img_src[3] returns true if the requested image size is found...
+									if ($att_id && ($img_src[3] == 1)) {
+										$img_src = $img_src[0];
+									}
+									else {
+										$img_src = '/wp-content/uploads/carousel_default-150x150.jpg';
+									}
+									
+									// print_r();
+										echo '<li class="span1"><img src="'.$img_src.'" /><div class="event_details"><h4>'.$EM_Event->output("#_EVENTLINK").'</h4><p class="date">'.$EM_Event->output('#l').'&nbsp'.$EM_Event->output('#F').'&nbsp'.$EM_Event->output('#j').'</p>
+										<p>'.$EM_Event->output('#_EVENTTIMES').'</p><p>'.$EM_Event->output('#_LOCATIONNAME').', '.$EM_Event->output('#_LOCATIONTOWN').'</p></div></li>';
+									}
+								?>
+							</ol>
+
+				<?php	
+				if ($EM_Events && $notphone) {
+					?>
+					<div id="eventCarousel" class="carousel slide well hidden-phone">
+						<div class="carousel-inner">
+							<?php
+							$current = 0;
+							foreach ($EM_Events as $EM_Event) {
+								$att_id = get_post_thumbnail_id($EM_Event->post_id );
+								if ($att_id) {
+									$img_src = wp_get_attachment_image_src( $att_id, 'carousel');		
+								}
+
+								if ($att_id && ($img_src[3] == 1)) {	
+									$img_src = $img_src[0];
+								}
+								else {
+									$img_src = '/wp-content/uploads/carousel_default.jpg';
+								}
+								if ($current === 0) {
+									$active = ' active';
+								}
+								else {
+									$active = '';
+								}
+								echo '<div class="item'.$active.'" id="'.$current.'">';
+								echo '<h4 class="hidden-phone">'.$EM_Event->output("#_EVENTLINK").'</h4>';
 
 
 
-?>
-<section class="span3 widgetarea">
+								echo '<a href="'.$EM_Event->output('#_EVENTURL').'"><img class="hidden-phone" src="'.$img_src.'" /></a>';
+								?>
 
-	<?php if (function_exists('dynamic_sidebar') && dynamic_sidebar('homepage-col1')) : else : ?>
+								<div class="event-details hidden-phone">
+									<?php echo '<p class="event_cat">'.$EM_Event->output('#_CATEGORYNAME').':</p>'; ?>
+									<?php echo '<p>'.$EM_Event->output('#l').'&nbsp'.$EM_Event->output('#F').'&nbsp'.$EM_Event->output('#j').'</p>'; ?>
+									<?php echo '<p>'.$EM_Event->output('#_EVENTTIMES').'</p>'; ?>
+									<?php echo '<p>'.$EM_Event->output('#_LOCATIONNAME').'</p>'; ?>
+								</div>
 
-	<div class="pre-widget">
 
-		<p><strong>Widgetized Area</strong></p>
 
-		<p>This panel is active and ready for you to add some widgets via the WP Admin</p>
+								<?php
+// 'size_exists='.$img_src[3].
+								echo '</div>';
+								$current += 1;
+							}
+							?>
+								<?php 
+								if ($total > 1) {
+									?>
 
-	</div>
+							<ol class="carousel-indicators">
+								<?php
 
-<?php endif; ?>
-<?php
-$home = get_category_by_slug('homepage');
-$home_id = $home->term_id;
-$news_args = array(
-	'category_name' => 'news',
+
+								$count = 0;
+								foreach ($EM_Events as $EM_Event) {
+									$att_id = get_post_thumbnail_id($EM_Event->post_id );
+									if ($att_id) {
+										$img_src = wp_get_attachment_image_src( $att_id, 'thumbnail');
+									}
+									if ($att_id && ($img_src[3] == 1)) {
+										$img_src = $img_src[0];
+									}
+									else {
+										$img_src = '/wp-content/uploads/carousel_default-150x150.jpg';
+									}
+									
+									if ( $count < $total) {
+										if ($count === 0) {
+											$active = ' class="span1 active"';
+										}
+										else {
+											$active = ' class="span1"';
+										}
+
+									// print_r();
+										echo '<li data-target="#eventCarousel" data-slide-to="'.$count.'"'.$active.'><img src="'.$img_src.'" /><span>'.$EM_Event->output('#d').' / '.$EM_Event->output('#m').'</span></li>';
+										$count += 1;
+									}
+								}
+
+								?>
+							</ol>
+															<?php
+								}
+								?>						
+						</div>
+
+			<!-- 			<a class="carousel-control left" href="#eventCarousel" data-slide="prev">&lsaquo;</a>
+						<a class="carousel-control right" href="#eventCarousel" data-slide="next">&rsaquo;</a> -->
+					</div>
+									<?php
+				}
+				?>
+			</div>
+			<div class="span3">
+				<aside id="book_us" class="widget widget_text">
+					<img src="/wp-content/themes/sg-bootstrap/css/book_img.jpg" class="hidden-tablet"/>
+					<div class="textwidget"><p>Gigs, parades, team-building workshops. You name it, we can do it.</p><p>Get in touch to discuss how we can liven up your event.</p><p> </p><p><a class="btn btn-block btn-success btn-large" href="book-us">Book the Band</a></p></div>
+				</aside>
+				<aside id="join_us" class="widget widget_text">
+					<img src="/wp-content/themes/sg-bootstrap/css/join_img.jpg" class="hidden-tablet" />
+					<div class="textwidget"><p>Samba Gal&ecirc;z is open to anyone to join, either as a dancer or a drummer.</p><p>All we ask is that you do a short introductory course.</p><p> <a class="btn btn-block btn-info btn-large" href="join-us">Join the Band</a></p></div>
+				</aside>
+			</div>
+		</div>
+
+	</section>
+
+	<section id="primary" class="span9">
+		<?php tha_content_before(); ?>
+		<div id="content" role="main">
+			<?php tha_content_top();
+
+			$home_args = array(
+				'category_name' => 'homepage',	
+				'orderby' => 'date',
+				'order' => 'DESC',
+				);
+			$home_posts = new WP_Query($home_args);
+			wp_reset_postdata();
+
+			$testimonials_args = array(
+				'category_name' => 'testimonials',	
+				'orderby' => 'rand',
+				'order' => 'ASC',
+				'posts_per_page'   => 3,
+				);
+			$testimonials_posts = new WP_Query($testimonials_args);	
+			wp_reset_postdata();
+		// echo "<pre>";
+		// print_r($home_posts);
+		// echo "</pre>";
+
+
+// print_r($event_posts);
+
+
+
+			if ( $home_posts->have_posts() ) {
+				echo "<h3>News</h3>";
+				while ( $home_posts->have_posts() ) {
+					$home_posts->the_post();
+					get_template_part( '/partials/content', get_post_format() );			
+				}
+			}
+
+			if (($testimonials_posts) && !($home_posts->have_posts())) {
+				echo "<h3>The Things People Say...</h3>"; ?>
+				<div class="row">
+					<?php
+					while ( $testimonials_posts->have_posts() ) {
+						?>
+						<div class="span3">
+							<?php 
+							$testimonials_posts->the_post(); 
+							get_template_part( '/partials/content', get_post_format() );
+							?>
+						</div>
+						<?php
+				// 
+					} ?>
+				</div>
+				<?php
+			}		
+
+
+			tha_content_bottom(); ?>
+		</div><!-- #content -->
+		<?php tha_content_after(); ?>
+	</section><!-- #primary -->
+
+	<div class="span3">
+
+		<?php
+		$home = get_category_by_slug('homepage');
+		$home_id = $home->term_id;
+		$news_args = array(
+			'category_name' => 'news',
 			'category__not_in' => $home_id,
 			'orderby' => 'date',
 			'order' => 'DESC',
 			'posts_per_page' => 5,
 			);
-$news_posts = new WP_Query($news_args);
-wp_reset_postdata();
+		$news_posts = new WP_Query($news_args);
+		wp_reset_postdata(); ?>
+
+		<?php if (function_exists('dynamic_sidebar') && dynamic_sidebar('homepage-col1')) : else : ?>
+<!-- 
+		<div class="pre-widget">
+
+			<p><strong>Widgetized Area</strong></p>
+
+			<p>This panel is active and ready for you to add some widgets via the WP Admin</p>
+
+		</div>
+	-->
+<?php endif; ?>
+
+
+<?php if (function_exists('dynamic_sidebar') && dynamic_sidebar('homepage-col2')) : else : ?>
+<!-- 
+	<div class="pre-widget">
+
+		<p><strong>Widgetized Area</strong></p>
+
+		<p>This panel is active and ready for you to add some widgets via the WP Admin</p>
+	</div> -->
+
+<?php endif; ?>
+<?php
 
 if ($news_posts->have_posts()) { ?>
-<aside id="prev_news" class="widget well widget_news_widget"><h2 class="widget-title">Old News</h2>
-	
+<aside id="prev_news" class="widget widget_news_widget"><h2 class="widget-title">Band News</h2>
+
 	<ul>
 		<?php	
 		while ( $news_posts->have_posts() ) {
@@ -59,162 +306,9 @@ if ($news_posts->have_posts()) { ?>
 		?>
 	</ul>
 
-</aside>
-<?php
-}
-
-
+</aside>	
+<?php }
 ?>
-
-
-</section>
-<section id="primary" class="span6">
-	<?php tha_content_before(); ?>
-	<div id="content" role="main">
-		<?php tha_content_top();
-
-		$home_args = array(
-			'category_name' => 'homepage',	
-			'orderby' => 'date',
-			'order' => 'DESC',
-			);
-		$home_posts = new WP_Query($home_args);
-		wp_reset_postdata();
-
-		$testimonials_args = array(
-			'category_name' => 'testimonials',	
-			'orderby' => 'rand',
-			'order' => 'ASC',
-			'posts_per_page'   => 2,
-			);
-		$testimonials_posts = new WP_Query($testimonials_args);	
-		wp_reset_postdata();
-		// print_r($testimonials_posts);
-
-
-// print_r($event_posts);
-
-
-		
-		if ( $home_posts->have_posts() ) {
-			echo "<h3>News</h3>";
-			while ( $home_posts->have_posts() ) {
-				$home_posts->the_post();
-				get_template_part( '/partials/content', get_post_format() );			
-			}
-		}
-		$public_events = get_term_by('slug', 'public-events', 'event-categories');
-		$public_events_id = $public_events->term_id;
-// error_log(print_r($public_events, true));
-
-$cat_args = array(
-	'taxonomy' => 'event-categories',
-	'parent' => $public_events_id,
-	);
-
-$public_categories = get_categories($cat_args);
-$cats = array();
-foreach ($public_categories as $category) {
-	array_push($cats, $category->term_id);
-	# code...
-}
-// $cats = "'".$cats."'";
-$cats = implode(",", $cats);
-// $dump = var_export($public_categories);
-// error_log(print_r($public_categories, true));
-		// $gigs = get_term_by('slug', 'gig', 'event-categories');
-		// $gig_id = $gigs->term_id;
-		// $carnival = get_term_by('slug', 'carnival', 'event-categories');
-		// $carnival_id = $carnival->term_id;
-		// $parade = get_term_by('slug', 'parade', 'event-categories');
-		// $parade_id = $parade->term_id;
-		// $festival = get_term_by('slug', 'festival', 'event-categories');
-		// $festival_id = $festival->term_id;
-		// $public_workshop = get_term_by('slug', 'public-workshop', 'event-categories');
-		// $public_workshop_id = $public_workshop->term_id;
-		// $access = get_term_by('slug', 'access-course', 'event-categories');
-		// $access_id = $access->term_id;
-		// $dance = get_term_by('slug', 'dance-course', 'event-categories');
-		// $dance_id = $dance->term_id;				
-
-		$EM_Events = EM_Events::get( array(
-			'scope'=>'future', 
-			'orderby'=>'event_start_date', 
-			// 'order'=> 'DESC',
-			'limit'=>1,
-			'category' => $cats,
-			// 'category' => $gig_id, $access_id, $dance_id, $carnival_id, $parade_id, $festival_id, $public_workshop_id,
-			) );
-// error_log(print_r($EM_Events, true));
-		if ($EM_Events) {
-
-
-			foreach ($EM_Events as $EM_Event) { 
-				echo '<header class="page-header" style="margin-top:0;">';
-				echo "<h3 style='display:inline-block;'>Next ".$EM_Event->output("#_CATEGORYNAME").": </h3>";
-				?>
-				
-				
-				<?php
-				echo '<h4 class="entry-title" style="display:inline-block">&nbsp; '.$EM_Event->output("#_EVENTLINK").'</h4></header><article class="post">';
-				if ($EM_Event->output("#_EVENTIMAGEURL")) {	
-
-					echo '<img class="thumbnail aligncenter" src="'.$EM_Event->output("#_EVENTIMAGEURL").'" />'; 
-				}?>
-				<div class="span2 pull-right alert alert-info">
-					<label>Date</label>
-					<p><?php echo $EM_Event->output('#_EVENTDATES'); ?></p>
-					<label>Time</label>
-					<p><em><?php echo $EM_Event->output('#_EVENTTIMES'); ?></em></p>
-					<label>Location</label>
-					<p><?php echo $EM_Event->output('#_LOCATIONLINK'); ?></p>
-				</div>
-				<?	
-				echo '<p>'.$EM_Event->output("#_EVENTNOTES").'</p>';
-				echo "</article>";
-			}
-		}
-
-
-
-
-		if (($testimonials_posts) && !($home_posts->have_posts())) {
-			echo "<h3>The Things People Say...</h3>"; ?>
-			<div class="row">
-				<?php
-				while ( $testimonials_posts->have_posts() ) {
-					?>
-					<div class="span3">
-						<?php 
-						$testimonials_posts->the_post(); 
-						get_template_part( '/partials/content', get_post_format() );
-						?>
-					</div>
-					<?php
-				// 
-				} ?>
-			</div>
-			<?php
-		}		
-
-
-		tha_content_bottom(); ?>
-	</div><!-- #content -->
-	<?php tha_content_after(); ?>
-</section><!-- #primary -->
-
-<div class="span3">
-
-	<?php if (function_exists('dynamic_sidebar') && dynamic_sidebar('homepage-col2')) : else : ?>
-
-	<div class="pre-widget">
-
-		<p><strong>Widgetized Area</strong></p>
-
-		<p>This panel is active and ready for you to add some widgets via the WP Admin</p>
-	</div>
-
-<?php endif; ?>
 </div>	
 
 <?php
