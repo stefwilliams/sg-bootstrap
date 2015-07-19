@@ -107,9 +107,9 @@
 				<?php if (is_user_logged_in() && function_exists('dynamic_sidebar') && dynamic_sidebar('header-login')) : else : ?>
 
 				<div class="span3 social">
-					<a href="https://twitter.com/SambaGalez" target="_blank"><img src="/wp-content/themes/sg-bootstrap/css/twitter-out.png" onmouseover="this.src='/wp-content/themes/sg-bootstrap/css/twitter.png'" onmouseout="this.src='/wp-content/themes/sg-bootstrap/css/twitter-out.png'" alt="Twitter"></a>
-					<a href="https://www.facebook.com/SambaGalez" target="_blank"><img src="/wp-content/themes/sg-bootstrap/css/facebook-out.png" onmouseover="this.src='/wp-content/themes/sg-bootstrap/css/facebook.png'" onmouseout="this.src='/wp-content/themes/sg-bootstrap/css/facebook-out.png'" alt="Facebook"></a>
-					<a href="http://www.youtube.com/user/sambagalez" target="_blank"><img src="/wp-content/themes/sg-bootstrap/css/youtube-out.png" onmouseover="this.src='/wp-content/themes/sg-bootstrap/css/youtube.png'" onmouseout="this.src='/wp-content/themes/sg-bootstrap/css/youtube-out.png'" alt="Facebook"></a>
+					<a href="https://twitter.com/SambaGalez" target="_blank"><img src=<?php echo site_url()."/wp-content/themes/sg-bootstrap/css/twitter-out.png"; ?> onmouseover="this.src='<?php echo site_url().'/wp-content/themes/sg-bootstrap/css/twitter.png';?>'" onmouseout="this.src='<?php echo site_url().'/wp-content/themes/sg-bootstrap/css/twitter-out.png';?>'" alt="Twitter"></a>
+					<a href="https://www.facebook.com/SambaGalez" target="_blank"><img src=<?php echo site_url()."/wp-content/themes/sg-bootstrap/css/facebook-out.png"; ?> onmouseover="this.src='<?php echo site_url().'/wp-content/themes/sg-bootstrap/css/facebook.png';?>'" onmouseout="this.src='<?php echo site_url().'/wp-content/themes/sg-bootstrap/css/facebook-out.png';?>'" alt="Facebook"></a>
+					<a href="http://www.youtube.com/user/sambagalez" target="_blank"><img src=<?php echo site_url()."/wp-content/themes/sg-bootstrap/css/youtube-out.png"; ?> onmouseover="this.src='<?php echo site_url().'/wp-content/themes/sg-bootstrap/css/youtube.png';?>'" onmouseout="this.src='<?php echo site_url().'/wp-content/themes/sg-bootstrap/css/youtube-out.png';?>'" alt="Facebook"></a>
 				</div>
 
 			<?php endif; ?>

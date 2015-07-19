@@ -68,7 +68,7 @@ $EM_Events = EM_Events::get( array(
 										$img_src = $img_src[0];
 									}
 									else {
-										$img_src = '/wp-content/uploads/carousel_default-150x150.jpg';
+										$img_src = site_url().'/wp-content/uploads/carousel_default-150x150.jpg';
 									}
 									
 									// print_r();
@@ -95,7 +95,7 @@ $EM_Events = EM_Events::get( array(
 									$img_src = $img_src[0];
 								}
 								else {
-									$img_src = '/wp-content/uploads/carousel_default.jpg';
+									$img_src = site_url().'/wp-content/uploads/carousel_default.jpg';
 								}
 								if ($current === 0) {
 									$active = ' active';
@@ -144,7 +144,7 @@ $EM_Events = EM_Events::get( array(
 										$img_src = $img_src[0];
 									}
 									else {
-										$img_src = '/wp-content/uploads/carousel_default-150x150.jpg';
+										$img_src = site_url().'/wp-content/uploads/carousel_default-150x150.jpg';
 									}
 									
 									if ( $count < $total) {
@@ -177,11 +177,11 @@ $EM_Events = EM_Events::get( array(
 			</div>
 			<div class="span3">
 				<aside id="book_us" class="widget widget_text">
-					<img src="/wp-content/themes/sg-bootstrap/css/book_img.jpg" class="hidden-tablet"/>
+					<img src=<?php echo get_stylesheet_directory_uri()."/css/book_img.jpg"; ?> class="hidden-tablet"/>
 					<div class="textwidget"><p>Gigs, parades, team-building workshops. You name it, we can do it.</p><p>Get in touch to discuss how we can liven up your event.</p><p> </p><p><a class="btn btn-block btn-success btn-large" href="book-us">Book the Band</a></p></div>
 				</aside>
 				<aside id="join_us" class="widget widget_text">
-					<img src="/wp-content/themes/sg-bootstrap/css/join_img.jpg" class="hidden-tablet" />
+					<img src=<?php echo get_stylesheet_directory_uri()."/css/join_img.jpg"; ?> class="hidden-tablet" />
 					<div class="textwidget"><p>Samba Gal&ecirc;z is open to anyone to join, either as a dancer or a drummer.</p><p>All we ask is that you do a short introductory course.</p><p> <a class="btn btn-block btn-info btn-large" href="join-us">Join the Band</a></p></div>
 				</aside>
 			</div>
