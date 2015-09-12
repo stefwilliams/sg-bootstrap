@@ -46,7 +46,7 @@ $EM_Events = EM_Events::get( array(
 		if ($EM_Events && $total > 1) { ?>
 		<h3>Upcoming Events</h3>
 		<?php }
-		else { ?>
+		elseif ($total == 1) { ?>
 		<h3>Upcoming Event</h3>
 		<?php } ?>
 		<script>
@@ -54,6 +54,7 @@ $EM_Events = EM_Events::get( array(
 			jQuery(".carousel").carousel({ interval: false });
 		});
 		</script>
+		<?php if ($EM_Events) { ?>
 		<div class="row">
 			<div class="span9">
 							<ol class="carousel-indicators visible-phone">
@@ -70,8 +71,7 @@ $EM_Events = EM_Events::get( array(
 									else {
 										$img_src = site_url().'/wp-content/uploads/carousel_default-150x150.jpg';
 									}
-									
-									// print_r();
+					
 										echo '<li class="span1"><img src="'.$img_src.'" /><div class="event_details"><h4>'.$EM_Event->output("#_EVENTLINK").'</h4><p class="date">'.$EM_Event->output('#l').'&nbsp'.$EM_Event->output('#F').'&nbsp'.$EM_Event->output('#j').'</p>
 										<p>'.$EM_Event->output('#_EVENTTIMES').'</p><p>'.$EM_Event->output('#_LOCATIONNAME').', '.$EM_Event->output('#_LOCATIONTOWN').'</p></div></li>';
 									}
@@ -121,7 +121,6 @@ $EM_Events = EM_Events::get( array(
 
 
 								<?php
-// 'size_exists='.$img_src[3].
 								echo '</div>';
 								$current += 1;
 							}
@@ -154,26 +153,21 @@ $EM_Events = EM_Events::get( array(
 										else {
 											$active = ' class="span1"';
 										}
-
-									// print_r();
 										echo '<li data-target="#eventCarousel" data-slide-to="'.$count.'"'.$active.'><img src="'.$img_src.'" /><span>'.$EM_Event->output('#d').' / '.$EM_Event->output('#m').'</span></li>';
 										$count += 1;
 									}
 								}
-
 								?>
 							</ol>
-															<?php
+							<?php
 								}
 								?>						
 						</div>
-
-			<!-- 			<a class="carousel-control left" href="#eventCarousel" data-slide="prev">&lsaquo;</a>
-						<a class="carousel-control right" href="#eventCarousel" data-slide="next">&rsaquo;</a> -->
 					</div>
-									<?php
-				}
-				?>
+					<?php
+					} //end if $EM_Events && $notphone 
+			 ?>
+
 			</div>
 			<div class="span3">
 				<aside id="book_us" class="widget widget_text">
@@ -186,7 +180,7 @@ $EM_Events = EM_Events::get( array(
 				</aside>
 			</div>
 		</div>
-
+<?php 				} //end if $EM_Events ?>
 	</section>
 
 	<section id="primary" class="span9">
@@ -210,14 +204,6 @@ $EM_Events = EM_Events::get( array(
 				);
 			$testimonials_posts = new WP_Query($testimonials_args);	
 			wp_reset_postdata();
-		// echo "<pre>";
-		// print_r($home_posts);
-		// echo "</pre>";
-
-
-// print_r($event_posts);
-
-
 
 			if ( $home_posts->have_posts() ) {
 				echo "<h3>News</h3>";
