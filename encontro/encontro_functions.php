@@ -63,13 +63,16 @@ $pt = get_post_type( $post->ID );
 			$encontro_term = get_term_by( 'name', 'encontro', 'event-categories');
 			$encontro_term_id = $encontro_term->term_id;
 			$sub_cats = get_term_children( $encontro_term_id, 'event-categories' );
-			$event_cat = $EM_Event->output('#_CATEGORYID');
-			if (in_array($event_cat, $sub_cats)) {
-				wp_enqueue_style ('sg-encontro');
-				get_template_part( 'encontro/main');
-				exit;
-				// exit;
+			if ($EM_Event) { //check for $EM_Event - for some reason it's not always available at this stage. First noticed 17 Aug 2015
+				$event_cat = $EM_Event->output('#_CATEGORYID');
+				if (in_array($event_cat, $sub_cats)) {
+					wp_enqueue_style ('sg-encontro');
+					get_template_part( 'encontro/main');
+					exit;
+					// exit;
+				}				# code...
 			}
+
 	}	
 
 }

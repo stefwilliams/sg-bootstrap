@@ -19,6 +19,14 @@ require_once('plugins/events-manager/events-manager-oneticketonly.php' );
 
 */
 
+function sg_custom_img_sizes() {
+	 // add_image_size( 'category-thumb', 300 ); // 300 pixels wide (and unlimited height)
+  // 	add_image_size( 'homepage-thumb', 220, 180, true ); // (cropped)
+	add_image_size( 'carousel', 860, 363, array('left','center') );
+	// add_image_size( 'carousel_mob', 430, 182, array('left','center') );
+}
+add_action( 'after_setup_theme', 'sg_custom_img_sizes' );
+
 add_filter( 'wpmediacategory_taxonomy', function(){ return 'category_media'; } ); //requires PHP 5.3 or newer
 
 //add Jetpack 'Publicize' functionality to Events CPT
@@ -28,7 +36,7 @@ add_action('init', 'sg_publicize_events');
 remove_filter( 'post_gallery', 'the_bootstrap_post_gallery', 10, 2 );
 
 function sg_publicize_events() {
-    add_post_type_support( 'event', 'publicize' );
+	add_post_type_support( 'event', 'publicize' );
 }
 
 //change default 'publicize' value on new posts
@@ -61,10 +69,10 @@ function exclude_tags_based_on_roles($query) {
 add_action( 'pre_get_posts', 'exclude_tags_based_on_roles', 1 );
 
 function get_user_role( $user_id ){
-  $user_data = get_userdata( $user_id );
-  if(!empty( $user_data->roles ))
-      return $user_data->roles[0];
-  return false; 
+	$user_data = get_userdata( $user_id );
+	if(!empty( $user_data->roles ))
+		return $user_data->roles[0];
+	return false; 
 }
 
 /*add custom stylesheets*/
@@ -75,14 +83,14 @@ function sg_add_stylesheets() {
 		get_stylesheet_directory_uri() . "/css/slate-overrides.css",
 		false,
 		'all'
-	);
+		);
 
 	wp_register_style(				
 		'sg-bootstrap-wps',				
 		get_stylesheet_directory_uri() . "/css/bbpress-overrides.css",
 		false,
 		'all'
-	);
+		);
 
 	// wp_register_script(  );
 	wp_enqueue_script( 'modalfix', get_stylesheet_directory_uri() . "/js/modalfix.js", 'twitter-bootstrap', '0.1', true);
@@ -111,22 +119,22 @@ if (function_exists('register_sidebar')) {
 	register_sidebar(array(
 		'name'          => __( 'Homepage Column 1', 'sg-bootstrap' ),
 		'id'   			=> 'homepage-col1',
-		'before_widget' => '<aside id="%1$s" class="widget well %2$s">',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
-	));
+		));
 }
 
 if (function_exists('register_sidebar')) {
 	register_sidebar(array(
 		'name'          => __( 'Homepage Column 2', 'sg-bootstrap' ),
 		'id'   			=> 'homepage-col2',
-		'before_widget' => '<aside id="%1$s" class="widget well %2$s">',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
-	));
+		));
 }
 
 if (function_exists('register_sidebar')) {
@@ -137,7 +145,7 @@ if (function_exists('register_sidebar')) {
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
-	));
+		));
 }
 
 if (function_exists('register_sidebar')) {
@@ -148,7 +156,7 @@ if (function_exists('register_sidebar')) {
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
-	));
+		));
 }
 
 if (function_exists('register_sidebar')) {
@@ -159,7 +167,7 @@ if (function_exists('register_sidebar')) {
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
-	));
+		));
 }
 
 if (function_exists('register_sidebar')) {
@@ -170,7 +178,7 @@ if (function_exists('register_sidebar')) {
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
-	));
+		));
 }
 
 if (function_exists('register_sidebar')) {
@@ -181,6 +189,6 @@ if (function_exists('register_sidebar')) {
 		'after_widget'  => '</div>',
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
-	));
+		));
 }
 ?>
