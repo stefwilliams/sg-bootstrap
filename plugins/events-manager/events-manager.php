@@ -1,6 +1,6 @@
 <?php
 //change countries list on booking form to show UK at top, and remove Wales, England, Scotland, Ireland...
-add_filter( 'em_get_countries', 'sg_em_make_uk_default', 5, 1 );
+// add_filter( 'em_get_countries', 'sg_em_make_uk_default', 5, 1 );
 function sg_em_make_uk_default($em_countries_array) {
     $add_to_top = array(
         'GB'    =>  'United Kingdom'
@@ -16,7 +16,7 @@ function sg_em_make_uk_default($em_countries_array) {
 }
 
 //{has_leaders} conditional
-add_action('em_event_output_condition', 'my_em_styles_event_output_condition', 1, 4);
+// add_action('em_event_output_condition', 'my_em_styles_event_output_condition', 1, 4);
 function my_em_styles_event_output_condition($replacement, $condition, $match, $EM_Event){
     $leader_ids = get_post_meta( $EM_Event->post_id, 'event_leaders', true);
     if( is_object($EM_Event) && preg_match('/^has_leaders/',$condition, $matches) && $leader_ids ){
@@ -28,7 +28,7 @@ function my_em_styles_event_output_condition($replacement, $condition, $match, $
 
 
 //#_LEADERS placeholder
-add_filter('em_event_output_placeholder','my_em_styles_placeholders',1,3);
+// add_filter('em_event_output_placeholder','my_em_styles_placeholders',1,3);
 function my_em_styles_placeholders($replace, $EM_Event, $result){
     global $wp_query;
     switch( $result ){
@@ -92,7 +92,7 @@ function event_leaders_checklist(){
     wp_nonce_field( plugin_basename( __FILE__ ), 'event_leaders_nonce' );?><?php
 }
 
-add_action( 'admin_init', 'add_event_leader_meta_box' ); 
+// add_action( 'admin_init', 'add_event_leader_meta_box' ); 
 
 //new meta box for band info
 function add_band_info_meta_box() { 
@@ -185,4 +185,48 @@ else {
 }
 
 add_filter('the_content','insert_band_info',10,1);
+
+
+
+function sg_filter_private_events() {
+    global $post;
+    $event_is_private = false;
+    // $post = $wp_query->post;
+    if ($post->post_type == 'event') {
+        // $event_cats = get_terms('event-categories');
+        //find the Private Events category id//
+        $pe = get_term_by('name', 'Private Events', 'event-categories');
+        $pid = $pe->term_id;
+        // var_dump($event_cats);
+        $event_cats = wp_get_post_terms($post->ID, 'event-categories');
+
+        foreach ($event_cats as $cat) {
+            if (($cat->term_id == $pid) || ($cat->parent == $pid)) {
+                $event_is_private = true;
+            }
+        }
+
+        // echo "<pre>";
+        // var_dump($pid);
+        // var_dump($event_cats);
+
+        // // var_dump($GLOBALS);
+        // echo "</pre>";
+    }
+
+    if ($event_is_private) {
+        echo '<meta name="robots" content="noindex">';
+    }
+
+    if ($event_is_private && !is_user_logged_in()) {
+        echo "<meta http-equiv=\"refresh\" content=\"0;URL='".home_url()."'\" />";
+        // echo "You need to log in to view this page";
+        // exit();
+    }
+
+
+}
+
+add_action('wp_head', 'sg_filter_private_events');
+
 ?>
