@@ -122,8 +122,8 @@ function save_event_customfields($post_ID){
     // Secondly we need to check if the user intended to change this value.
     if ( ! isset( $_POST['bandinfo_nonce'] ) || ! wp_verify_nonce( $_POST['bandinfo_nonce'], plugin_basename( __FILE__ ) ) )
         return;
-    if ( ! isset( $_POST['event_leaders_nonce'] ) || ! wp_verify_nonce( $_POST['event_leaders_nonce'], plugin_basename( __FILE__ ) ) )
-        return;
+    // if ( ! isset( $_POST['event_leaders_nonce'] ) || ! wp_verify_nonce( $_POST['event_leaders_nonce'], plugin_basename( __FILE__ ) ) )
+    //     return;
     // Thirdly check the post type
     if ('event' != get_post_type($post_ID))
         return;
